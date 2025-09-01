@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ page_title }} - {{ shop.name }}</title>
+
+    {% if page_description %}
+        <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    <link rel="icon" type="image/png" href="{{ 'favicon_preciazo.png' | asset_url }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    {{ 'style.css' | asset_url | stylesheet_tag }}
+
+    {{ content_for_header }}
+</head>
+<body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}">
+
+    <!-- CÓDIGO DE DEBUG -->
+    <div style="position: fixed; top: 100px; left: 10px; background: #ffeb3b; padding: 10px; border: 2px solid #000; z-index: 99999; font-family: monospace; font-size: 14px; color: #000;">
+      <strong>DEBUG INFO:</strong><br>
+      Template Atual: <strong>{{ template.name }}.{{ template.suffix | default: 'none' }}</strong>
+    </div>
+    <!-- FIM DO CÓDIGO DE DEBUG -->
+
+    {% section 'header' %}
+
+    <main role="main">
+        {{ content_for_layout }}
+    </main>
+
+    {% section 'footer' %}
+
+    <!-- Estruturas Ocultas Globais -->
+    <div id="cart-overlay" class="cart-overlay"></div>
+    <div id="cart-sidebar" class="cart-sidebar"></div>
+    <div id="help-modal-overlay" class="modal-overlay"></div>
+    <div id="generic-modal-overlay" class="modal-overlay"></div>
+    <div id="lightbox-overlay" class="modal-overlay lightbox-overlay"></div>
+    <div id="product-hover-popup" class="product-hover-popup"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="{{ 'script.js' | asset_url }}" defer="defer"></script>
+
+</body>
+</html>

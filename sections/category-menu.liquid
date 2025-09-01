@@ -1,0 +1,75 @@
+<section class="home-section">
+    <h2 class="section-title">{{ section.settings.title }}</h2>
+    <div class="category-menu">
+        {% for block in section.blocks %}
+            <a href="{{ block.settings.link_url | default: '#' }}" class="category-item" 
+               style="background-image: url('{{ block.settings.image | image_url: 'master' }}');">
+                <span class="category-arrow"><i class="fas fa-chevron-right"></i></span>
+                <div class="category-text-content">
+                    {% if block.settings.subtitle != blank %}
+                        <span class="category-subtitle">{{ block.settings.subtitle }}</span>
+                    {% endif %}
+                    {% if block.settings.title != blank %}
+                        <h3 class="category-title">{{ block.settings.title }}</h3>
+                    {% endif %}
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Menu de Categorias",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título da Seção",
+      "default": "Todas las Categorías"
+    }
+  ],
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Categoria",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagem de Fundo"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtítulo",
+          "default": "Todos"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título Principal",
+          "default": "Los Productos"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link da Categoria"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Menu de Categorias",
+      "blocks": [
+        { "type": "category" },
+        { "type": "category" },
+        { "type": "category" },
+        { "type": "category" }
+      ]
+    }
+  ]
+}
+{% endschema %}

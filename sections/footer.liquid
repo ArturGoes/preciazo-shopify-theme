@@ -1,0 +1,117 @@
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-column">
+            <h3>{{ section.settings.coluna1_titulo }}</h3>
+            {% if section.settings.menu_footer_1 != blank %}
+                <ul>
+                    {% for link in linklists[section.settings.menu_footer_1].links %}
+                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <div class="footer-column">
+            <h3>{{ section.settings.coluna2_titulo }}</h3>
+            <ul>
+                <li><a href="mailto:{{ section.settings.email_contato }}"><i class="fa-regular fa-envelope"></i> {{ section.settings.email_contato }}</a></li>
+                <li><p><i class="fa-solid fa-location-dot"></i> {{ section.settings.endereco }}</p></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>{{ section.settings.coluna3_titulo }}</h3>
+            <p>{{ section.settings.coluna3_texto }}</p>
+            <div class="payment-icons">
+                <i class="fa-solid fa-hand-holding-dollar"></i>
+                <span>Pago Contra Reembolso</span>
+            </div>
+        </div>
+        <div class="footer-column footer-newsletter">
+            <h3>{{ section.settings.coluna4_titulo }}</h3>
+            <p>{{ section.settings.coluna4_texto }}</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Tu dirección de email">
+                <button type="submit">Suscribirse</button>
+            </form>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© {{ "now" | date: "%Y" }}, {{ shop.name }}. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Coluna 1: Informação"
+    },
+    {
+      "type": "text",
+      "id": "coluna1_titulo",
+      "label": "Título da Coluna 1",
+      "default": "Información"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_footer_1",
+      "label": "Menu da Coluna 1"
+    },
+    {
+      "type": "header",
+      "content": "Coluna 2: Suporte"
+    },
+    {
+      "type": "text",
+      "id": "coluna2_titulo",
+      "label": "Título da Coluna 2",
+      "default": "Soporte al Cliente"
+    },
+    {
+      "type": "text",
+      "id": "email_contato",
+      "label": "Email de Contato",
+      "default": "info@preciazo.es"
+    },
+    {
+      "type": "text",
+      "id": "endereco",
+      "label": "Endereço",
+      "default": "Dirección Ficticia, 123"
+    },
+    {
+      "type": "header",
+      "content": "Coluna 3: Pagamento"
+    },
+    {
+      "type": "text",
+      "id": "coluna3_titulo",
+      "label": "Título da Coluna 3",
+      "default": "Métodos de Pago"
+    },
+    {
+      "type": "text",
+      "id": "coluna3_texto",
+      "label": "Texto da Coluna 3",
+      "default": "Paga de forma segura al recibir tu pedido."
+    },
+    {
+      "type": "header",
+      "content": "Coluna 4: Newsletter"
+    },
+    {
+      "type": "text",
+      "id": "coluna4_titulo",
+      "label": "Título da Coluna 4",
+      "default": "Newsletter"
+    },
+    {
+      "type": "text",
+      "id": "coluna4_texto",
+      "label": "Texto da Coluna 4",
+      "default": "¡Suscríbete para recibir novedades y promociones!"
+    }
+  ]
+}
+{% endschema %}

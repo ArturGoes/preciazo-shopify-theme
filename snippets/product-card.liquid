@@ -1,0 +1,50 @@
+<div class="product-card"
+     data-product-id="{{ product.id }}"
+     data-name="{{ product.title | escape }}"
+     data-price="{{ product.price_min }}">
+
+    <a href="{{ product.url | within: collection }}" class="product-image-container">
+        <img src="{{ product.featured_image | image_url: width: 500 }}"
+             alt="{{ product.featured_image.alt | escape }}"
+             class="product-image-main"
+             loading="lazy"
+             width="500"
+             height="{{ 500 | divided_by: product.featured_image.aspect_ratio | round }}">
+
+        {% if product.images[1] != blank %}
+            <img src="{{ product.images[1] | image_url: width: 500 }}"
+                 alt="{{ product.images[1].alt | escape }}"
+                 class="product-image-hover"
+                 loading="lazy"
+                 width="500"
+                 height="{{ 500 | divided_by: product.images[1].aspect_ratio | round }}">
+        {% endif %}
+
+        {% if product.compare_at_price > product.price %}
+            <div class="product-tag">
+                Ahorra {{ product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round }}%
+            </div>
+        {% endif %}
+    </a>
+
+    <button class="favorite-btn" data-product-id="{{ product.id }}" aria-label="Adicionar aos Favoritos">
+        <i class="fa-regular fa-heart"></i>
+    </button>
+
+    <div class="product-card-info">
+        <h3 class="product-name">
+            <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+        </h3>
+
+        <div class="product-card-reviews">
+            <span class="stars">★★★★★</span>
+        </div>
+
+        <div class="product-price-container">
+            <span class="product-price">{{ product.price | money }}</span>
+            {% if product.compare_at_price > product.price %}
+                <span class="original-price">{{ product.compare_at_price | money }}</span>
+            {% endif %}
+        </div>
+    </div>
+</div>

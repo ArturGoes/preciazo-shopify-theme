@@ -1,0 +1,101 @@
+<div class="main-container">
+  <div class="about-us-page">
+    {%- if section.settings.main_title != blank -%}
+      <h1 class="about-us-title">{{ section.settings.main_title | escape }}</h1>
+    {%- endif -%}
+
+    {%- for block in section.blocks -%}
+      <section class="about-section-row {% if block.settings.reverse_layout %}reverse{% endif %}" {{ block.shopify_attributes }}>
+        <div class="about-image-container">
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', alt: block.settings.image.alt | default: block.settings.title }}
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+        </div>
+        <div class="about-text-container">
+          {%- if block.settings.title != blank -%}
+            <h2>{{ block.settings.title | escape }}</h2>
+          {%- endif -%}
+          {%- if block.settings.subtitle != blank -%}
+            <h3>{{ block.settings.subtitle | escape }}</h3>
+          {%- endif -%}
+          {%- if block.settings.text != blank -%}
+            <div class="rte">
+              {{ block.settings.text }}
+            </div>
+          {%- endif -%}
+        </div>
+      </section>
+    {%- endfor -%}
+
+    {%- if section.settings.closing_text != blank -%}
+        <div class="about-us-closing-text rte">
+            {{ section.settings.closing_text }}
+        </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Página Sobre Nós",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "main_title",
+      "label": "Título Principal",
+      "default": "Nuestra Esencia"
+    },
+    {
+      "type": "richtext",
+      "id": "closing_text",
+      "label": "Texto de Encerramento",
+      "default": "<p><strong>Al elegir Preciazo, no solo estás comprando un gadget. Te estás uniendo a un movimiento. Un movimiento que defiende que la innovación de calidad y un precio justo pueden y deben coexistir. Bienvenido a la familia Preciazo.</strong></p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "content_row",
+      "name": "Linha de Conteúdo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagem"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título da Seção",
+          "default": "Nossa História"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtítulo (Opcional)"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Texto Principal",
+          "default": "<p>Escreva o conteúdo principal aqui. Você pode usar <strong>negrito</strong> e parágrafos.</p>"
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse_layout",
+          "label": "Inverter layout (imagem à direita)",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Página Sobre Nós"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,87 @@
+<header class="header-contenedor">
+    <div class="barra-anuncios">
+        <div class="anuncio-wrapper">
+            <button class="anuncio-nav-btn prev"><i class="fas fa-chevron-left"></i></button>
+            <div class="anuncios-rotativos">
+                <p class="anuncio-item active">{{ section.settings.anuncio_1 }}</p>
+                <p class="anuncio-item">{{ section.settings.anuncio_2 }}</p>
+                <p class="anuncio-item">{{ section.settings.anuncio_3 }}</p>
+            </div>
+            <button class="anuncio-nav-btn next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+    <nav class="navbar-principal">
+        <div class="logo">
+            <a href="{{ routes.root_url }}">
+                {% if section.settings.logo != blank %}
+                    <img src="{{ section.settings.logo | image_url: width: 300 }}"
+                         alt="{{ section.settings.logo.alt | default: shop.name }}"
+                         style="max-height: 45px;">
+                {% else %}
+                    <span>{{ shop.name }}</span>
+                {% endif %}
+            </a>
+        </div>
+        <ul class="nav-enlaces">
+            {% for link in linklists[section.settings.menu].links %}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+        </ul>
+        <div class="nav-iconos">
+            <button id="open-search-btn" class="nav-icon-btn" aria-label="Buscar"><i class="fas fa-search"></i></button>
+            <div class="search-bar-container" id="search-bar">
+                <form action="{{ routes.search_url }}" method="get" role="search" id="search-form-header">
+                    <input type="search" name="q" placeholder="Buscar productos..." id="search-input-header" autocomplete="off">
+                    <button type="submit" aria-label="Buscar"><i class="fas fa-search"></i></button>
+                </form>
+                <div id="search-suggestions" class="search-suggestions-container"></div>
+            </div>
+            <a href="{{ routes.account_url }}" class="nav-icon-btn" aria-label="Mi Cuenta"><i class="fas fa-user"></i></a>
+            <a href="{{ routes.cart_url }}" id="open-cart-icon" class="nav-icon-btn" aria-label="Carrito">
+                <i class="fas fa-shopping-cart"></i>
+                <span id="cart-counter" class="cart-counter">{{ cart.item_count }}</span>
+            </a>
+        </div>
+    </nav>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu de Navegação",
+      "default": "main-menu"
+    },
+    {
+      "type": "header",
+      "content": "Barra de Anúncios"
+    },
+    {
+      "type": "text",
+      "id": "anuncio_1",
+      "label": "Anúncio 1",
+      "default": "ENVÍO GRATIS EN COMPRAS SUPERIORES A €50"
+    },
+    {
+      "type": "text",
+      "id": "anuncio_2",
+      "label": "Anúncio 2",
+      "default": "PROMOCIONES POR TIEMPO LIMITADO"
+    },
+    {
+      "type": "text",
+      "id": "anuncio_3",
+      "label": "Anúncio 3",
+      "default": "LA MEJOR RELACIÓN CALIDAD-PRECIO DE ESPAÑA"
+    }
+  ]
+}
+{% endschema %}

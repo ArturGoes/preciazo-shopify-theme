@@ -1,0 +1,103 @@
+{%- liquid
+  comment
+    INÍCIO DA CORREÇÃO DEFINITIVA:
+    Em vez de usar o filtro `map`, que falhou, vamos usar um loop `for`
+    para calcular manualmente os preços min/max. Este método é 100% confiável.
+  endcomment
+
+  assign min_price = 99999999
+  assign max_price = 0
+
+  for product in collection.products
+    if product.price < min_price
+      assign min_price = product.price
+    endif
+    if product.price > max_price
+      assign max_price = product.price
+    endif
+  endfor
+
+  comment
+    Caso a coleção esteja vazia, os valores serão os iniciais.
+    Vamos garantir que eles sejam 0 para não quebrar a lógica.
+  endcomment
+  if collection.products_count == 0
+    assign min_price = 0
+    assign max_price = 0
+  endif
+-%}
+
+<div class="main-container">
+    <section class="collection-header">
+        <h1>{{ collection.title }}</h1>
+        <span id="product-count">{{ collection.products_count }} productos</span>
+    </section>
+
+    {% if collection.products_count > 0 %}
+        <div class="collection-layout">
+            <aside class="filter-sidebar" data-min-price-cents="{{ min_price }}" data-max-price-cents="{{ max_price }}">
+                <h3>Filtrar e Ordenar</h3>
+                <div class="filter-group">
+                    <label for="search-input">Buscar por nome</label>
+                    <input type="text" id="search-input" placeholder="Ex: Ventilador...">
+                </div>
+                <div class="filter-group">
+                    <label>Faixa de Preço</label>
+                    <div class="price-slider-container">
+                        <div class="price-range-slider">
+                            <div id="price-range-progress" class="price-range-progress"></div>
+                        </div>
+                        <input type="range" id="min-price-range" class="price-range-input" step="1">
+                        <input type="range" id="max-price-range" class="price-range-input" step="1">
+                    </div>
+                    <div class="price-input-container">
+                        <div class="price-input-field">
+                            <span>€</span>
+                            <input type="number" id="min-price-input" class="price-input">
+                        </div>
+                        <span>-</span>
+                        <div class="price-input-field">
+                            <span>€</span>
+                            <input type="number" id="max-price-input" class="price-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <label for="sort-by">Ordenar por</label>
+                    <select id="sort-by">
+                        <option value="manual">Destaque</option>
+                        <option value="best-selling">Mais vendidos</option>
+                        <option value="title-ascending">Nome: A-Z</option>
+                        <option value="title-descending">Nome: Z-A</option>
+                        <option value="price-ascending">Preço: Menor para Maior</option>
+                        <option value="price-descending">Preço: Maior para Menor</option>
+                        <option value="created-ascending">Mais antigos</option>
+                        <option value="created-descending">Mais novos</option>
+                    </select>
+                </div>
+                <button id="reset-filters" class="button-secondary">Limpar Filtros</button>
+            </aside>
+
+            <div class="product-grid" id="product-grid-collection">
+                {%- paginate collection.products by 50 -%}
+                    {% for product in collection.products %}
+                        {% render 'product-card', product: product %}
+                    {% endfor %}
+                    {% if paginate.pages > 1 %}{{ paginate | default_pagination }}{% endif %}
+                {%- endpaginate -%}
+            </div>
+        </div>
+    {% else %}
+        <div class="collection-empty">
+            <p>Não foram encontrados produtos nesta coleção.</p>
+            <a href="{{ routes.all_products_collection_url }}" class="button-primary">Ver todos os produtos</a>
+        </div>
+    {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Página de Coleção",
+  "settings": []
+}
+{% endschema %}

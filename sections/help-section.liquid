@@ -1,0 +1,60 @@
+<section class="help-section">
+    <div class="main-container">
+        <div class="help-card">
+            <div class="help-card-image-wrapper">
+                {% if section.settings.image != blank %}
+                    <img src="{{ section.settings.image | image_url: 'master' }}" alt="{{ section.settings.image.alt | default: 'Agente de suporte' }}">
+                {% else %}
+                    <img src="{{ 'support-agent.png' | asset_url }}" alt="Agente de suporte pronta para ajudar">
+                {% endif %}
+            </div>
+            <div class="help-card-content">
+                {% if section.settings.title != blank %}
+                    <h2>{{ section.settings.title }}</h2>
+                {% endif %}
+                {% if section.settings.text != blank %}
+                    <p>{{ section.settings.text }}</p>
+                {% endif %}
+                {% if section.settings.button_label != blank %}
+                    <button class="button-primary open-help-modal-btn">{{ section.settings.button_label }}</button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Seção de Ajuda",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagem do Agente"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "¿Necesitas ayuda con tu pedido?"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Texto",
+      "default": "Nuestro equipo de atención al cliente está disponible para resolver tus dudas y asegurar una experiencia de compra excepcional. No dudes en contactarnos."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Texto do Botão",
+      "default": "Contactar con Soporte"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Seção de Ajuda"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,211 @@
+{
+  "sections": {
+    "hero_slider": {
+      "type": "hero-slider",
+      "blocks": {
+        "slide_We9QCW": {
+          "type": "slide",
+          "settings": {
+            "heading": "Novedades en Gadgets 2024",
+            "subheading": "<p>La tecnología que te mueve, ahora a tu alcance.<\/p>",
+            "button_label": "Descubre las Novedades",
+            "button_link": ""
+          }
+        },
+        "slide_Q6iKMn": {
+          "type": "slide",
+          "settings": {
+            "heading": "Novedades en Gadgets 2024",
+            "subheading": "<p>La tecnología que te mueve, ahora a tu alcance.<\/p>",
+            "button_label": "Descubre las Novedades",
+            "button_link": ""
+          }
+        },
+        "slide_a9CKPW": {
+          "type": "slide",
+          "settings": {
+            "heading": "Novedades en Gadgets 2024",
+            "subheading": "<p>La tecnología que te mueve, ahora a tu alcance.<\/p>",
+            "button_label": "Descubre las Novedades",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_We9QCW",
+        "slide_Q6iKMn",
+        "slide_a9CKPW"
+      ],
+      "settings": {}
+    },
+    "feature_bar_LWYri3": {
+      "type": "feature-bar",
+      "blocks": {
+        "feature_A87xHp": {
+          "type": "feature",
+          "settings": {
+            "icon": "fa-solid fa-truck-fast",
+            "title": "Envío gratis",
+            "subtitle": "Por toda España"
+          }
+        },
+        "feature_XiM4hY": {
+          "type": "feature",
+          "settings": {
+            "icon": "fa-solid fa-hand-holding-dollar",
+            "title": "Paga contra entrega",
+            "subtitle": "Pago 100% seguro"
+          }
+        },
+        "feature_kketm6": {
+          "type": "feature",
+          "settings": {
+            "icon": "fa-solid fa-shield-halved",
+            "title": "Tus datos protegidos",
+            "subtitle": "Certificado SSL"
+          }
+        }
+      },
+      "block_order": [
+        "feature_A87xHp",
+        "feature_XiM4hY",
+        "feature_kketm6"
+      ],
+      "name": "Barra de Vantagens",
+      "settings": {}
+    },
+    "category_menu_6D6cGL": {
+      "type": "category-menu",
+      "blocks": {
+        "category_LfVU8d": {
+          "type": "category",
+          "settings": {
+            "subtitle": "Todos",
+            "title": "Los Productos",
+            "link_url": ""
+          }
+        },
+        "category_PcAbMV": {
+          "type": "category",
+          "settings": {
+            "subtitle": "Todos",
+            "title": "Los Productos",
+            "link_url": ""
+          }
+        },
+        "category_GtyRwn": {
+          "type": "category",
+          "settings": {
+            "subtitle": "Todos",
+            "title": "Los Productos",
+            "link_url": ""
+          }
+        },
+        "category_MtmRVC": {
+          "type": "category",
+          "settings": {
+            "subtitle": "Todos",
+            "title": "Los Productos",
+            "link_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_LfVU8d",
+        "category_PcAbMV",
+        "category_GtyRwn",
+        "category_MtmRVC"
+      ],
+      "name": "Menu de Categorias",
+      "settings": {
+        "title": "Todas las Categorías"
+      }
+    },
+    "marquee": {
+      "type": "marquee",
+      "settings": {
+        "text": "ENVÍO GRATIS EN COMPRAS SUPERIORES A €50 • PAGO CONTRA REEMBOLSO •",
+        "background_color": "#1a1a2e",
+        "text_color": "#ebe0ff",
+        "rotation": -2
+      }
+    },
+    "featured_products": {
+      "type": "featured-products",
+      "settings": {
+        "title": "Nuestros Productos Destacados",
+        "collection": "produtos",
+        "products_to_show": 8
+      }
+    },
+    "help_section": {
+      "type": "help-section",
+      "settings": {
+        "title": "¿Necesitas ayuda con tu pedido?",
+        "text": "Nuestro equipo de atención al cliente está disponible para resolver tus dudas y asegurar una experiencia de compra excepcional. No dudes en contactarnos.",
+        "button_label": "Contactar con Soporte"
+      }
+    },
+    "favorite_products": {
+      "type": "featured-products",
+      "settings": {
+        "title": "Nuestros Favoritos",
+        "collection": "produtos",
+        "products_to_show": 8
+      }
+    },
+    "faq_pVrCB9": {
+      "type": "faq",
+      "blocks": {
+        "faq_item_DYFUE8": {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Cuál es el tiempo de entrega?",
+            "answer": "<p>El tiempo de entrega estándar es de 5 a 10 días útiles una vez que el pedido ha sido procesado. Recibirás una notificación por correo electrónico cuando tu pedido sea enviado.<\/p>"
+          }
+        },
+        "faq_item_dHArgE": {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Cómo funciona la garantía?",
+            "answer": "<p>Todos los productos comercializados por Preciazo están cubiertos por nuestra política de garantía contra defectos de fabricación y daños ocurridos antes de la entrega.<\/p><p>Para solicitar la activación de la garantía, el cliente deberá notificar la incidencia a nuestro departamento de soporte técnico a través del correo electrónico oficial indicado en nuestra sección de contacto. Es recomendable adjuntar una descripción del defecto y, si es posible, material fotográfico o de vídeo que lo evidencie para agilizar el proceso. Una vez recibida la solicitud, nuestro equipo evaluará el caso y le proporcionará las instrucciones para proceder con la reparación, sustitución o reembolso del producto, según corresponda.<\/p>"
+          }
+        },
+        "faq_item_YYUfrE": {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Ofrecen cambios?",
+            "answer": "<p>Sí, ofrecemos cambios y devoluciones en un plazo de 14 días desde la recepción del producto, siempre que se encuentre en su estado original y con su embalaje intacto.<\/p>"
+          }
+        },
+        "faq_item_MwBARV": {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Cuáles son los métodos de pago?",
+            "answer": "<p>Actualmente, para tu mayor seguridad y comodidad, ofrecemos exclusivamente el pago contra reembolso. Pagarás tu pedido en efectivo directamente al repartidor en el momento de la entrega.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_DYFUE8",
+        "faq_item_dHArgE",
+        "faq_item_YYUfrE",
+        "faq_item_MwBARV"
+      ],
+      "name": "FAQ - Perguntas",
+      "settings": {
+        "title": "Preguntas frecuentes"
+      }
+    }
+  },
+  "order": [
+    "hero_slider",
+    "feature_bar_LWYri3",
+    "category_menu_6D6cGL",
+    "marquee",
+    "featured_products",
+    "help_section",
+    "favorite_products",
+    "faq_pVrCB9"
+  ]
+}

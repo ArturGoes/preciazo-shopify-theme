@@ -1,0 +1,83 @@
+<section class="home-section main-container">
+    <div class="collection-header">
+        {% if section.settings.title != blank %}
+            <h1 style="text-align: left; margin-bottom: 0;">{{ section.settings.title }}</h1>
+        {% endif %}
+        {% if section.settings.collection != blank %}
+            <a href="{{ section.settings.collection.url }}" class="view-all-link">
+                Ver todos <i class="fas fa-chevron-right"></i>
+            </a>
+        {% endif %}
+    </div>
+
+    <div class="recommended-slider-wrapper featured-slider-wrapper">
+        <div class="swiper featured-slider">
+            <div class="swiper-wrapper">
+                {% assign collection = section.settings.collection %}
+                {% for product in collection.products limit: section.settings.products_to_show %}
+                    <div class="swiper-slide">
+                        {% render 'product-card', product: product %}
+                    </div>
+                {% else %}
+                    {% for i in (1..8) %}
+                         <div class="swiper-slide">
+                            <div class="product-card">
+                                <div class="product-image-container" style="background-color: #f1f1f1;">
+                                     {{ 'product-apparel-' | append: i | placeholder_svg_tag: 'placeholder-svg' }}
+                                </div>
+                                <div class="product-card-info">
+                                    <h3 class="product-name">
+                                        <a href="#">Produto de Exemplo</a>
+                                    </h3>
+                                    <div class="product-price-container">
+                                        <span class="product-price">€19.99</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="recommended-slider-controls">
+            <div class="swiper-pagination"></div>
+            <div class="slider-nav-buttons">
+                <div class="swiper-button-prev"><i class="fas fa-chevron-left"></i></div>
+                <div class="swiper-button-next"><i class="fas fa-chevron-right"></i></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Produtos em Destaque",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título da Seção",
+      "default": "Nuestros Productos Destacados"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Coleção"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 4,
+      "max": 16,
+      "step": 1,
+      "label": "Número de produtos a mostrar",
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Produtos em Destaque"
+    }
+  ]
+}
+{% endschema %}

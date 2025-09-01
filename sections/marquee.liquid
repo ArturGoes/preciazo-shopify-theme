@@ -1,0 +1,78 @@
+<div class="marquee">
+    <div class="marquee-content">
+        {% for i in (1..4) %}
+            <span>{{ section.settings.text }}</span>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+.marquee {
+    width: 100%;
+    overflow: hidden;
+    background-color: {{ section.settings.background_color }};
+    white-space: nowrap;
+    margin-top: 60px;
+    padding: 15px 0;
+    transform: rotate({{ section.settings.rotation }}deg);
+}
+
+.marquee-content {
+    display: inline-block;
+    animation: marquee 25s linear infinite;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: {{ section.settings.text_color }};
+    text-transform: uppercase;
+}
+
+.marquee-content span {
+    margin: 0 40px;
+}
+
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Faixa Animada (Marquee)",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Texto da Faixa",
+      "default": "ENVÍO GRATIS EN COMPRAS SUPERIORES A €50 • PAGO CONTRA REEMBOLSO •"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Cor de Fundo",
+      "default": "#1a1a2e"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Cor do Texto",
+      "default": "#ebe0ff"
+    },
+    {
+      "type": "range",
+      "id": "rotation",
+      "min": -5,
+      "max": 5,
+      "step": 1,
+      "unit": "deg",
+      "label": "Rotação",
+      "default": -2
+    }
+  ],
+  "presets": [
+    {
+      "name": "Faixa Animada (Marquee)"
+    }
+  ]
+}
+{% endschema %}

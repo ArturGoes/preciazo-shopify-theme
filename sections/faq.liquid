@@ -1,0 +1,91 @@
+<section class="faq-section">
+    <div class="main-container">
+        <div class="faq-card">
+            <div class="faq-card-title-wrapper">
+                <h2>{{ section.settings.title }}</h2>
+            </div>
+            <div class="faq-accordion">
+                {% for block in section.blocks %}
+                    <details>
+                        <summary>
+                            <span>{{ block.settings.question }}</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </summary>
+                        <div class="faq-content">
+                            {{ block.settings.answer }}
+                        </div>
+                    </details>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ - Perguntas",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Preguntas frecuentes"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "Pergunta e Resposta",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Pergunta",
+          "default": "¿Cuál es el tiempo de entrega?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Resposta",
+          "default": "<p>El tiempo de entrega estándar es de 5 a 10 días útiles una vez que el pedido ha sido procesado.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ - Perguntas",
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Cuál es el tiempo de entrega?",
+            "answer": "<p>El tiempo de entrega estándar es de 5 a 10 días útiles una vez que el pedido ha sido procesado. Recibirás una notificación por correo electrónico cuando tu pedido sea enviado.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Cómo funciona la garantía?",
+            "answer": "<p>Todos los productos comercializados por Preciazo están cubiertos por nuestra política de garantía contra defectos de fabricación y daños ocurridos antes de la entrega.</p><p>Para solicitar la activación de la garantía, el cliente deberá notificar la incidencia a nuestro departamento de soporte técnico a través del correo electrónico oficial indicado en nuestra sección de contacto. Es recomendable adjuntar una descripción del defecto y, si es posible, material fotográfico o de vídeo que lo evidencie para agilizar el proceso. Una vez recibida la solicitud, nuestro equipo evaluará el caso y le proporcionará las instrucciones para proceder con la reparación, sustitución o reembolso del producto, según corresponda.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Ofrecen cambios?",
+            "answer": "<p>Sí, ofrecemos cambios y devoluciones en un plazo de 14 días desde la recepción del producto, siempre que se encuentre en su estado original y con su embalaje intacto.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "¿Cuáles son los métodos de pago?",
+            "answer": "<p>Actualmente, para tu mayor seguridad y comodidad, ofrecemos exclusivamente el pago contra reembolso. Pagarás tu pedido en efectivo directamente al repartidor en el momento de la entrega.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

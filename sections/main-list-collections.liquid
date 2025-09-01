@@ -1,0 +1,68 @@
+<div class="main-container page-width">
+  <h1 class="collection-showcase-title">{{ section.settings.title | escape }}</h1>
+
+  <div class="collection-showcase-container">
+    {%- for block in section.blocks -%}
+      <a href="{{ block.settings.link | default: "#" }}" class="collection-showcase-card">
+        {%- if block.settings.image != blank -%}
+          {{ block.settings.image | image_url: width: 1000 | image_tag: loading: 'lazy', alt: block.settings.image.alt | default: block.settings.title }}
+        {%- else -%}
+          <!-- Ícone de placeholder removido -->
+        {%- endif -%}
+        
+        <div class="collection-card-content">
+          <h2>{{ block.settings.title | default: "Coleção" | escape }}</h2>
+        </div>
+      </a>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Lista de Coleções",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título Principal",
+      "default": "PRECIAZO"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_card",
+      "name": "Card de Coleção",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagem de fundo"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título do Card",
+          "default": "Título da Coleção"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link do Card"
+        }
+      ],
+      "limit": 3
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lista de Coleções",
+      "blocks": [
+        { "type": "collection_card" },
+        { "type": "collection_card" },
+        { "type": "collection_card" }
+      ]
+    }
+  ]
+}
+{% endschema %}
