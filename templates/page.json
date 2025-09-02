@@ -1,0 +1,12 @@
+{
+  "name": "Página Padrão",
+  "sections": {
+    "main": {
+      "type": "main-page-content",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

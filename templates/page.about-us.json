@@ -1,0 +1,12 @@
+{
+  "name": "Sobre Nós",
+  "sections": {
+    "main": {
+      "type": "main-about-us",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
