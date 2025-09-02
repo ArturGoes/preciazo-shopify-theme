@@ -1,0 +1,309 @@
+{% comment %}
+  Este é o arquivo da seção para a página de contato.
+  Ele contém o layout de duas colunas, o formulário de contato do Shopify
+  e as configurações personalizáveis no schema.
+{% endcomment %}
+
+<div class="contact-page-container page-width">
+  <div class="contact-wrapper">
+    
+    <!-- Coluna da Esquerda: Informações de Contato -->
+    <div class="contact-info">
+      <h1 class="contact-title">{{ section.settings.title }}</h1>
+      <div class="contact-intro">
+        {{ section.settings.text }}
+      </div>
+      
+      <div class="contact-details">
+        {%- if section.settings.email != blank -%}
+          <div class="contact-detail-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <strong>Email</strong>
+              <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.phone != blank -%}
+          <div class="contact-detail-item">
+            <i class="fas fa-phone"></i>
+            <div>
+              <strong>Teléfono</strong>
+              <p>{{ section.settings.phone }}</p>
+            </div>
+          </div>
+        {%- endif -%}
+        
+        {%- if section.settings.address != blank -%}
+          <div class="contact-detail-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <strong>Dirección</strong>
+              <p>{{ section.settings.address }}</p>
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <!-- Coluna da Direita: Formulário -->
+    <div class="contact-form-container">
+      <h2>{{ section.settings.form_title }}</h2>
+
+      {%- form 'contact', id: 'contact-form', class: 'contact-form' -%}
+        
+        {%- if form.posted_successfully? -%}
+          <p class="form-success">¡Gracias por contactarnos! Te responderemos pronto.</p>
+        {%- endif -%}
+
+        {%- if form.errors -%}
+          <div class="form-error">
+            <p>Por favor, corrige los siguientes errores:</p>
+            <ul>
+              {%- for field in form.errors -%}
+                <li>
+                  {{ form.errors.translated_fields[field] | capitalize }} - {{ form.errors.messages[field] }}
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="contact-name">Nombre</label>
+            <input type="text" id="contact-name" name="contact[name]" placeholder="Tu nombre completo" value="{{ form.name }}">
+          </div>
+          <div class="form-group">
+            <label for="contact-email">E-mail *</label>
+            <input type="email" id="contact-email" name="contact[email]" placeholder="tu@email.com" required value="{{ form.email }}">
+          </div>
+          <div class="form-group full-width">
+            <label for="contact-phone">Teléfono</label>
+            <input type="tel" id="contact-phone" name="contact[phone]" placeholder="Tu número de teléfono (opcional)" value="{{ form.phone }}">
+          </div>
+          <div class="form-group full-width">
+            <label for="contact-comment">Comentario</label>
+            <textarea id="contact-comment" name="contact[body]" rows="6" placeholder="Escribe tu mensaje aquí...">{{ form.body }}</textarea>
+          </div>
+        </div>
+        <button type="submit" class="button-primary contact-submit-btn">Enviar Mensaje</button>
+      {%- endform -%}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+/* Estilos para a página de contato */
+.contact-page-container {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact-wrapper {
+  display: flex;
+  gap: 60px; /* Espaçamento entre as colunas */
+}
+
+.contact-info,
+.contact-form-container {
+  flex: 1; /* Faz as duas colunas ocuparem o mesmo espaço */
+}
+
+.contact-title {
+  font-size: 2.5rem; /* 40px */
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+}
+
+.contact-intro {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  color: #555;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.contact-detail-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.contact-detail-item i {
+  font-size: 24px;
+  color: #0d0d59; /* Cor principal do seu site */
+}
+
+.contact-detail-item strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.contact-detail-item a,
+.contact-detail-item p {
+  margin: 0;
+  color: #555;
+  text-decoration: none;
+}
+.contact-detail-item a:hover {
+  text-decoration: underline;
+}
+
+.contact-form-container h2 {
+    font-size: 2rem; /* 32px */
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.contact-form .form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.contact-form .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form .form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.contact-form label {
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  font-family: inherit;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #0d0d59; /* Cor principal ao focar */
+  box-shadow: 0 0 0 2px rgba(13, 13, 89, 0.2);
+}
+
+.contact-submit-btn {
+  width: 100%;
+  padding: 15px;
+  margin-top: 20px;
+  background-color: #0d0d59; /* Cor principal do botão */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+}
+
+.contact-submit-btn:hover {
+  background-color: #0a0a42; /* Cor mais escura no hover */
+}
+
+.form-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.form-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+.form-error ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+/* Responsividade para dispositivos móveis */
+@media (max-width: 768px) {
+  .contact-wrapper {
+    flex-direction: column;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Página de Contato",
+  "tag": "section",
+  "class": "contact-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Contenido de la Columna de Información"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título Principal",
+      "default": "¡Estamos aquí para ayudarte!"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Texto de Introducción",
+      "default": "<p>Tus comentarios y preguntas son esenciales para nosotros. Utiliza el formulario para contactarnos.</p>"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Correo Electrónico de Contacto",
+      "default": "hello@reallygreatsite.com"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Teléfono de Contacto",
+      "default": "+123-456-7890"
+    },
+    {
+      "type": "text",
+      "id": "address",
+      "label": "Dirección",
+      "default": "123 Anywhere St., Any City"
+    },
+    {
+      "type": "header",
+      "content": "Contenido de la Columna del Formulario"
+    },
+    {
+      "type": "text",
+      "id": "form_title",
+      "label": "Título del Formulario",
+      "default": "Get in touch."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Página de Contato"
+    }
+  ]
+}
+{% endschema %}
