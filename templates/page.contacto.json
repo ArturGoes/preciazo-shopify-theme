@@ -2,7 +2,8 @@
   "name": "Contact",
   "sections": {
     "main": {
-      "type": "main-contact-form"
+      "type": "main-contact-form",
+      "settings": {}
     }
   },
   "order": [
